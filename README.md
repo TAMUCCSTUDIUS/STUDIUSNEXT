@@ -38,7 +38,7 @@ This navigates to the `frontend` folder.
 <img src="images/instruction3.png" alt="Instruction Image 1" style="border: 2px solid black;">
 
 
-5. After installation, run: npm run dev to run the development mode
+5. After installation, run: `npm run dev` to run the development mode
 
 <img src="images/instruction4.png" alt="Instruction Image 1" style="border: 2px solid black;">
 
