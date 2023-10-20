@@ -27,13 +27,13 @@ This project uses NEXT.js, Prisma, and other dependencies listed below:
    <img src="images/instruction1.png" alt="Instruction Image 1" style="border: 2px solid black;">
 
 
-3. In the terminal, type: cd frontend
+3. In the terminal, type: `cd frontend`
 This navigates to the `frontend` folder.
 
 <img src="images/instruction2.png" alt="Instruction Image 1" style="border: 2px solid black;">
  
 
-4. <span style="color:red">**MAKE SURE TO DO `npm install`**</span>. This installs all necessary packages.
+4. 🚨 MAKE SURE TO DO `npm install` 🚨 This installs all necessary packages.
 
 <img src="images/instruction3.png" alt="Instruction Image 1" style="border: 2px solid black;">
 
