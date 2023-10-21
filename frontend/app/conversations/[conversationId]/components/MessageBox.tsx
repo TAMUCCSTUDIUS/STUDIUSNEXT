@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { FullMessageType } from "@/app/types";
 
 import Avatar from "@/app/components/Avatar";
+import ImageModal from "./ImageModal";
 
 
 interface MessageBoxProps {
@@ -21,6 +22,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 }) => {
 
   const session = useSession();
+  const [imageModelOpen, setImageModalOpen] = useState(false);
 
   const isOwn = session?.data?.user?.email === data?.sender?.email;
 
@@ -63,8 +65,9 @@ const MessageBox: React.FC<MessageBoxProps> = ({
           </div>
         </div>
         <div className={message}>
+          <ImageModal src={data.image} isOpen={imageModelOpen} onClose={() => setImageModalOpen(false)}/>
           {data.image ? (
-            <Image alt="Image" height="288" width="288" src={data.image} className="object-cover cursor-pointer hover:scale-110 transition translate"/>
+            <Image onClick={() => setImageModalOpen(true)} alt="Image" height="288" width="288" src={data.image} className="object-cover cursor-pointer hover:scale-110 transition translate"/>
           ) : (
             <div>{data.body}</div>
           )}

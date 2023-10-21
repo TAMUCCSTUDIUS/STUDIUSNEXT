@@ -13,7 +13,7 @@ This project uses NEXT.js, Prisma, and other dependencies listed below:
 | NEXT.js    | The React Framework    |
 | Prisma     | Database Access        |
 | axios      | For navigation         |
-| ..         |..                    |
+| Pusher     | Real Time              |
 
 (Note: Replace '...' with other dependencies and their descriptions)
 

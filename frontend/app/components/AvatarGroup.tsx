@@ -28,6 +28,7 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({ users = [] }) => {
             overflow-hidden
             h-[21px]
             w-[21px]
+            
             ${positionMap[index as keyof typeof positionMap]}`}
         >
           <Image 
