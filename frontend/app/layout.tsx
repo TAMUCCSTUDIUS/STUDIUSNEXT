@@ -1,16 +1,11 @@
-import { Inter } from 'next/font/google'
-
-import ToasterContext from './context/ToasterContect'
-import AuthContext from './context/AuthContext'
-
 import './globals.css'
-
-
-const inter = Inter({ subsets: ['latin'] })
+import AuthContext from './context/AuthContext'
+import ActiveStatus from './components/ActiveStatus'
+import ToasterContext from './context/ToasterContect'
 
 export const metadata = {
-  title: 'Messanger Clone',
-  description: 'Messanger Clone',
+  title: 'Messenger',
+  description: 'Messenger Clone',
 }
 
 export default function RootLayout({
@@ -20,12 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <AuthContext>
           <ToasterContext />
-         {children}
+          <ActiveStatus />
+          {children}
         </AuthContext>
-        </body>
+      </body>
     </html>
   )
 }

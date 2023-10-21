@@ -79,9 +79,6 @@ export async function POST(
     return NextResponse.json(newMessage)
   } catch (error) {
     console.log(error, 'ERROR_MESSAGES')
-    console.log('App Key:', process.env.NEXT_PUBLIC_PUSHER_APP_KEY);
-    console.log('App ID:', process.env.PUSHER_APP_ID);
-    console.log('Secret:', process.env.PUSHER_SECRET);
 
     return new NextResponse('Error', { status: 500 });
   }

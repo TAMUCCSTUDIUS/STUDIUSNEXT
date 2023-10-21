@@ -7,12 +7,11 @@ import { Conversation, User } from '@prisma/client';
 import { format } from 'date-fns';
 
 import useOtherUser from '@/app/hooks/useOtherUse';
+import useActiveList from '@/app/hooks/useActiveList';
 
 import Avatar from '@/app/components/Avatar';
-import Modal from '@/app/components/Modal';
-import ConfirmModal from './ConfirmModal';
 import AvatarGroup from '@/app/components/AvatarGroup';
-
+import ConfirmModal from './ConfirmModal';
 
 interface ProfileDrawerProps {
   isOpen: boolean;
@@ -27,10 +26,8 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
   onClose,
   data,
 }) => {
-  const otherUser = useOtherUser(data);
-
   const [confirmOpen, setConfirmOpen] = useState(false);
-  
+  const otherUser = useOtherUser(data);
   
   const joinedDate = useMemo(() => {
     return format(new Date(otherUser.createAt), 'PP');
@@ -40,21 +37,23 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
     return data.name || otherUser.name;
   }, [data.name, otherUser.name]);
 
+  const { members } = useActiveList();
+  const isActive = members.indexOf(otherUser?.email!) !== -1;
 
   const statusText = useMemo(() => {
     if (data.isGroup) {
       return `${data.users.length} members`;
     }
 
-  }, [data]);
+    return isActive ? 'Active' : 'Offline'
+  }, [data, isActive]);
 
   return (
-    
     <>
-    <ConfirmModal
-      isOpen={confirmOpen}
-      onClose={() => setConfirmOpen(false)}
-    />
+      <ConfirmModal 
+        isOpen={confirmOpen} 
+        onClose={() => setConfirmOpen(false)}
+      />
       <Transition.Root show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-50" onClose={onClose}>
           <Transition.Child
@@ -100,11 +99,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                       <div className="relative mt-6 flex-1 px-4 sm:px-6">
                         <div className="flex flex-col items-center">
                           <div className="mb-2">
-                            {data.isGroup ? (
-                              <AvatarGroup users={data.users}/>
-                            ) : (
-                             <Avatar user={otherUser} />
-                             )}
+                            {data.isGroup ? <AvatarGroup users={data.users} /> : <Avatar user={otherUser} />}
                           </div>
                           <div>
                             {title}
@@ -146,29 +141,6 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                 "
                               >
                                 {data.users.map((user) => user.email).join(', ')}
-                              </dd>
-                            </div>
-                          )}
-                          {data.isGroup && (
-                            <div>
-                              <dt
-                              className="
-                              text-sm
-                              font-medium
-                              text-gray-500
-                              sm:w-40
-                              sm:flex-shrink-0"
-                              >
-                                Emails
-                              </dt>
-                              <dd
-                              className="
-                              mt-1
-                              text-sm
-                              text-gray-900
-                              sm:col-span-2"
-                              >
-                                {data.users.map((user) => user.email).join(',')}
                               </dd>
                             </div>
                           )}
