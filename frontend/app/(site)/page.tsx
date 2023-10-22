@@ -4,6 +4,7 @@ import AuthForm from "./components/AuthForm";
 
 export default function Home() {
   return (
+    // This controls the container of the page
     <div className="
     flex
     min-h-full
@@ -12,9 +13,11 @@ export default function Home() {
     py-12
     sm:px-6
     log:px-8
-    bg-gray-100">
+    bg-gray-100"
+    >
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        {/* This is STUDIUS IMAGE */}
         <Image
         alt="Logo"
         height="48"
