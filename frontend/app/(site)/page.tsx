@@ -25,6 +25,7 @@ export default function Home() {
         width="48"
         className="mx-auto w-auto"
         src="/images/logo.png"/>
+        {/* The header title page */}
         <h2 
         className="
         mt-6
