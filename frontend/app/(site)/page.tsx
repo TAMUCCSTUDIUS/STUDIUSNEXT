@@ -1,13 +1,19 @@
 import Image from "next/image";
 import AuthForm from "./components/AuthForm";
 
+function getZoomLevel() {
+  return window.devicePixelRatio * 100;
+}
+
 export default function Home() {
   return (
-    <div className="flex min-h-full items-center py-0 bg-gray-100">
-      <div className="flex justify-center items-center w-full h-screen overflow-hidden">  {/* Fixed size and overflow set to hidden */}
+    <div className="flex min-h-screen items-center justify-center bg-gray-100">
 
-        {/* This is the STUDIUS IMAGE */}
-        <div className="w-1/4 text-center m-0 p-0">  
+      {/* Inner flex container */}
+      <div className="flex flex-col sm:flex-row items-center justify-center w-full h-screen overflow-hidden lg:space-x-16">
+
+        {/* STUDIUS IMAGE */}
+        <div className="w-3/4 sm:w-1/3 lg:w-1/4 text-center m-0 p-0">  
           <Image
             alt="Logo"
             height={500}
@@ -17,12 +23,13 @@ export default function Home() {
         </div>
 
         {/* AuthForm Container */}
-        <div style={{ width: '400px', height: '600px', overflow: 'hidden' }} className="m-0 p-0">  
-    <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900 text-center">
-        Sign in to your account
-    </h2>
-    <AuthForm />
-</div>
+        <div style={{ width: '90%', maxWidth: '450px', height: '650px', overflow: 'hidden' }} className="m-0 p-0 mt-4 sm:mt-0 lg:text-lg">  
+          <h2 className="mt-6 text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 text-center">
+            Welcome Islanders!
+          </h2>
+          <AuthForm />
+        </div>
+
       </div>
     </div>
   );
