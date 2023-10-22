@@ -172,7 +172,7 @@ const AuthForm = () => {
         text-gray-500
         ">
           <div>
-            {variant === 'LOGIN' ? 'New to Messager?' : 'Already have an account!'}
+            {variant === 'LOGIN' ? 'New to StudiUS?' : 'Already have an account!'}
           </div>
           <div
           onClick={toggleVariant}
