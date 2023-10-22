@@ -61,64 +61,58 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({ data, selected }) => 
   }, [lastMessage])
 
   return (
-    <div onClick={handleClick}
-    className= {clsx(`
-    w-full,
-    relative,
-    flex
-    items-center
-    space-x-3
-    hover:bg-neutral-100
-    rounded-lg
-    transition
-    cursor-pointer
-    p-3`,
+    <div
+    onClick={handleClick}
+    className={clsx(
+      'w-full',
+      'relative',
+      'flex',
+      'items-center',
+      'space-x-3',
+      'rounded-lg',
+      'transition',
+      'cursor-pointer',
+      'p-3',
+      selected ? 'bg-green-200' : 'bg-white' // Custom background color for selected conversation
+    )}
     
-    selected ? 'bg-neutral-100' : 'bg-white'
-    )}>   
+      style={{
+        border: selected ? '2px solid #4CAF50' : '2px solid #ccc', // Border color based on selected state
+        fontSize: '16px', // Custom font size
+        color: selected ? '#4CAF50' : 'black', // Custom text color based on selected state
+      }}
+  >
     {data.isGroup ? (
-      <AvatarGroup users={data.users}/>
-    ): (
-    <Avatar user={otherUser} /> 
+      <AvatarGroup users={data.users} />
+    ) : (
+      <Avatar user={otherUser} />
     )}
     <div className="min-w-0 flex-1">
       <div className="focus:outline-none">
-        <div className="
-        flex
-        justify-between
-        items-center
-        mb-1">
-          <p 
-          className="
-          text-md
-          font-medium
-          text-gray-900
-          "
-          
-          >{data.name || otherUser.name}</p>
+        <div className="flex justify-between items-center mb-1">
+          <p className="text-md font-medium text-green-900">
+            {data.name || otherUser.name}
+          </p>
           {lastMessage?.createdAt && (
-            <p className="
-            text-xs
-            text-gray-400
-            font-light
-            "
-            >
+            <p className="text-xs text-gray-400 font-light">
               {format(new Date(lastMessage.createdAt), 'p')}
             </p>
           )}
         </div>
 
-        <p className={clsx(`
-        truncate
-        text-sm`,
-        hasSeen ? 'text-gray-500' : 'text-black font-medium'
-        )}>
+        <p
+          className={clsx(
+            'truncate',
+            'text-sm',
+            hasSeen ? 'text-gray-500' : 'text-black font-medium'
+          )}
+        >
           {lastMessageText}
         </p>
-        </div>
-        </div>
+      </div>
     </div>
-  );
-}
+  </div>
+);
+};
 
 export default ConversationBox;
