@@ -83,11 +83,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
 
   return (
     <>
-      <GroupChatModal 
-        users={users} 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)}
-      />
+      <GroupChatModal users={users} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <aside className={clsx(`
         fixed 
         inset-y-0 
@@ -101,21 +97,22 @@ const ConversationList: React.FC<ConversationListProps> = ({
         border-gray-200 
       `, isOpen ? 'hidden' : 'block w-full left-0')}>
         <div className="px-5">
-          <div className="flex justify-between mb-4 pt-4">
-            <div className="text-2xl font-bold text-neutral-800">
+          <div className="flex justify-between items-center mb-4 pt-4">
+            <div className="text-2xl font-bold text-green-800">
               Messages
             </div>
             <div 
               onClick={() => setIsModalOpen(true)} 
-              className="
+              className={`
                 rounded-full 
                 p-2 
-                bg-gray-100 
-                text-gray-600 
+                bg-green-100 
+                text-green-600 
                 cursor-pointer 
-                hover:opacity-75 
+                hover:bg-green-200 
+                hover:text-green-700 
                 transition
-              "
+              `}
             >
               <MdOutlineGroupAdd size={20} />
             </div>
@@ -125,12 +122,13 @@ const ConversationList: React.FC<ConversationListProps> = ({
               key={item.id}
               data={item}
               selected={conversationId === item.id}
+              unread={item.unread} // Add a property for unread messages
             />
           ))}
         </div>
       </aside>
     </>
-   );
+  );
 }
- 
+
 export default ConversationList;
