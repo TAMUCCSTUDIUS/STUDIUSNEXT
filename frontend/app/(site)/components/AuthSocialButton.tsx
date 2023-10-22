@@ -14,6 +14,7 @@ const AuthSocialButton: React.FC<AuthSocialButtonProps>= ({
 }) => {
   
   return (
+    // Buttons to Google and GitHub CSS
     <button
     type="button"
     onClick={onClick}

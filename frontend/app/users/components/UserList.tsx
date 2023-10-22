@@ -13,6 +13,7 @@ const UserList: React.FC<UserListProps> = ({
   items, 
 }) => {
   return ( 
+    // UserList size needs to match UserBox
     <aside 
       className="
         fixed 
